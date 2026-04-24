@@ -423,7 +423,7 @@ Este módulo armazena as configurações globais de uma empresa ou equipe, atuan
 
 # Funcionalidade de Cada Arquivo
 
-> ## <a id="Workspace.py "></a>Workspace.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+> ## <a id="Workspace.py "></a>Workspace.py<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
 
 ### Responsabilidades principais
 
