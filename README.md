@@ -11,6 +11,19 @@ A ideia desse arquivo é transformar o entendimento de um código rebuscado e de
 - [**Workspace.py**](#workspacepy)
 
 
+# Models-Task-Main 
+A ideia desse arquivo é transformar o entendimento de um código rebuscado e de alta complexidade em minimamente entendível a uma linguagem acessivel a todos. Ao elaborar esse documento dividi criteriosamente o entendimento por tópicos com prioridades de cima para baixo
+
+> ## pressione CTRL + SHIFT + V para visualizar o .md na Preview
+
+
+## Sumário
+- [**Arquitetura de Pastas**](#arquitetura-de-pastas)
+- [**Diagrama de Entidades**](#diagrama-de-entidades)
+- [**Dicionario de Termos Técnicos**](#dicionario-de-termos-técnicos)
+- [**Workspace.py**](#workspacepy)
+
+
 <a id=""></a>
 
 ## <a id="Arquitetura de Pastas"></a>Arquitetura de Pastas
@@ -413,17 +426,19 @@ erDiagram
 ## <a id="Dicionario de Termos Técnicos"></a>Dicionario de Termos Técnicos
 Adicione aqui termos que nao sao bem compreendidos para facilitar a leitura
 
-- <a id="UI"></a>**UI**: Interface do usuário
+- <a id="UI"></a>`UI`: Interface do usuário
 - <a id="Slug"></a>`Slug` : Parte da url ou identificador unico que facilita a leitura a nivel humano
-- <a id="Accordion"></a>**Accordion**: 
-- <a id="Tabbed"></a>**Tabbed**: 
-**Coração do sistema**
+- <a id="Accordion"></a>`Accordion (Sanfona)`: Padrão de interface que organiza conteúdo em seções verticais expansíveis
+- <a id="Tabbed"></a>`Tabbed (Abas)`: Padrão de interface que organiza conteúdos em guias (abas) horizontais
 
-Este módulo armazena as configurações globais de uma empresa ou equipe, atuando como o núcleo de permissões e hierarquias.
 
 # Funcionalidade de Cada Arquivo
 
-> ## <a id="Workspace.py "></a>Workspace.py<img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+> ## <a id="Workspace.py "></a>Workspace.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+
+
+
+O Workspace é o Coração do sistema. Este módulo armazena as configurações globais de uma empresa ou equipe, atuando como o núcleo de permissões e hierarquias.
 
 ### Responsabilidades principais
 
@@ -449,6 +464,7 @@ Gerencia o fluxo de convites via e-mail.
 - Permite criar subgrupos dentro de um workspace. è util para separar departamentos ou células de trabalho
 
 ## Organizaçãoe UX
-Esse arquivo tem muitos modelos focados em **Estado da UI**, o sistema quer que quando voce volte ele mantenha a organização xatamente da forma que voçê o deixou. Por isso existem varios modelos com JSONField(Para salvar configurações flexiveis)
+Esse arquivo tem muitos modelos focados em **Estado da [`UI`](#UI)**, o sistema quer que quando voce volte ele mantenha a organização xatamente da forma que voçê o deixou. Por isso existem varios modelos com JSONField(Para salvar configurações flexiveis)
 
-- **WorkspaceUserProperties**: Salva como o usuários gostam de ver seus dados(filtros, propriedades exibidas, estilo de navegaçâo como Accordion ou Tabbed).
+- **WorkspaceUserProperties**: Salva como o usuários gostam de ver seus dados(filtros, propriedades exibidas, estilo de navegaçâo como [`Accordion`](#Accordion) ou Tabbed).
+
