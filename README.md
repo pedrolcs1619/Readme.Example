@@ -58,7 +58,7 @@ A ideia desse arquivo é transformar o entendimento de um código rebuscado e de
 ```
 
 ## <a id="Diagrama de Entidades"></a>Diagrama de Entidades
-A proposta desse diagrama é o entendimento de Hierarquias das classes do models
+A proposta desse diagrama é o entendimento de Hierarquias das classes do models,
 para a visualização do mesmo pelo VScode basta:
 - Baixar a extensão: Markdown Preview Mermaid Support
 
