@@ -11,19 +11,6 @@ A ideia desse arquivo é transformar o entendimento de um código rebuscado e de
 - [**Workspace.py**](#workspacepy)
 
 
-# Models-Task-Main 
-A ideia desse arquivo é transformar o entendimento de um código rebuscado e de alta complexidade em minimamente entendível a uma linguagem acessivel a todos. Ao elaborar esse documento dividi criteriosamente o entendimento por tópicos com prioridades de cima para baixo
-
-> ## pressione CTRL + SHIFT + V para visualizar o .md na Preview
-
-
-## Sumário
-- [**Arquitetura de Pastas**](#arquitetura-de-pastas)
-- [**Diagrama de Entidades**](#diagrama-de-entidades)
-- [**Dicionario de Termos Técnicos**](#dicionario-de-termos-técnicos)
-- [**Workspace.py**](#workspacepy)
-
-
 <a id=""></a>
 
 ## <a id="Arquitetura de Pastas"></a>Arquitetura de Pastas
