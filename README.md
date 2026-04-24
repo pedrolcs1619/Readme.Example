@@ -9,6 +9,8 @@ A ideia desse arquivo é transformar o entendimento de um código rebuscado e de
 - [**Diagrama de Entidades**](#diagrama-de-entidades)
 - [**Dicionario de Termos Técnicos**](#dicionario-de-termos-técnicos)
 - [**Workspace.py**](#workspacepy)
+- [**Project.py**](#projectpy)
+- [**Api.py**](#apipy)
 
 
 <a id=""></a>
@@ -417,15 +419,20 @@ Adicione aqui termos que nao sao bem compreendidos para facilitar a leitura
 - <a id="Slug"></a>`Slug` : Parte da url ou identificador unico que facilita a leitura a nivel humano
 - <a id="Accordion"></a>`Accordion (Sanfona)`: Padrão de interface que organiza conteúdo em seções verticais expansíveis
 - <a id="Tabbed"></a>`Tabbed (Abas)`: Padrão de interface que organiza conteúdos em guias (abas) horizontais
+- <a id="Kanban"></a>`Kanban`: Metodologia ági de organiação de trabalho dividido por cards para organizar o fluxo de produçãoKanban
+- <a id="Gant"></a>`Gant`: O gráficpo de gant é uma ferramenta visual de gestão de projetos, baseada em barras horizontais, que mapeia; Tarefas, Duraçoes, Dependencias e responsáveis ao longo do tempo
+- <a id="Calendário"></a>`Calendário`:O calendário diferente do que se pensa é uma interface grafica de organização de projeto orientada a uma matriz de Linhas e Coluna podendo nelas conter o atributo que o usuário quiser
 
 
 # Funcionalidade de Cada Arquivo
 
-> ## <a id="Workspace.py "></a>Workspace.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+> ### <a id="Workspace.py "></a>Workspace.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+<details>
 
 
-
+```
 O Workspace é o Coração do sistema. Este módulo armazena as configurações globais de uma empresa ou equipe, atuando como o núcleo de permissões e hierarquias.
+```
 
 ### Responsabilidades principais
 
@@ -454,4 +461,56 @@ Gerencia o fluxo de convites via e-mail.
 Esse arquivo tem muitos modelos focados em **Estado da [`UI`](#UI)**, o sistema quer que quando voce volte ele mantenha a organização xatamente da forma que voçê o deixou. Por isso existem varios modelos com JSONField(Para salvar configurações flexiveis)
 
 - **WorkspaceUserProperties**: Salva como o usuários gostam de ver seus dados(filtros, propriedades exibidas, estilo de navegaçâo como [`Accordion`](#Accordion) ou Tabbed).
+
+</details>
+
+---
+
+
+
+> ### <a id="Project.py "></a>Project.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+
+<details>
+
+```
+É a entidade central que agrupa todas as atividades produtivas
+```
+ - **Identidade**: Gerencia o nome, descrição(com suporte a texto rico/HTML), ícoes e uma identidade única(*identifier*, ex:`PROJ-123`).
+ - **Privacidade**: Define se o projeto é secreto ou público(Network)
+ - **Configuraóes Operacionais**: Controla quas funcionalidades estão ativas(rastreamento de tempo, tipos de tarefa, visualizações como [Kanban](#Kanban), [Gant](#Gant), [Calendário](#Calendário))
+
+</details>
+
+
+> ### <a id="Api.py "></a>Api.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
+
+<details>
+
+```
+Esse arquivo é responsável por gerenciar os Token de acesso(APIToken) e os rastros de audtoria(APIActivityLog). Ele separa quem pode acessar o sistema do que foi feito durante esse acesso
+```
+
+### APIToken
+```
+O cerebro da autenticação. Diferente de um login normal, ese modelo trata justamente do relacionamento de maquinas e integraçoes com regras específicas
+```
+ - **Identidade & Segurança**: Gera tokens únicos com chaves seguras. o uso de [`db_index`]() na coluna token é uma otimização crucial para que o banco encontre aautenticação quase que instantaneamente, mesmo com milhares de tokens ativos.
+ - **Controle de Acesso**: Vincula um `token` a um `User` (Seja ele Humano ou Bot) e a um `Workspace`. Isso garante que uma integração de um workspace nao veja propriedades e conteúdos pertencentes a outros mesmos
+ - **Limitação(Rate Limiting)**: define o campo `allow_rate_limit`(ex:"60/min") para evitar que integraçoes mal configuradas derrubem o servidor(ataques ou loops infinitos)
+- **Gestão de Vida**: Possui campos de expiração e status(`is_active`),permitindo se necessario revogar acessos imediatamente
+
+### APIActivityLog - O diário de Auditoria
+```
+Para cada requisiçao que passa pelos tokens, o sistema gera um "espelho" do que aconteceu
+```
+- **Forense e Debug**: Registra tudo: O caminho(`path`), o método(GET/POST), os cabeçalhos(`headers`), e até o corpo da requisição(`body`). Se algo der errado na requisição, é exatamente aqui que os devs irão olhar oque deu de errado
+- **Observabilidade**: Armazena o código de resposta(`response_code`) para monitorar a saúde da API(Ex: se estão ocorrendo muitos erros 403 ou 500)
+- **Rastreabilidade**: Registra o *IP* de origem e o *User Agent*. Isso é fundamental para identificar de onde vêm os acessos suspeitos de tentativa de invasão
+---
+**Porque essa separação é tão importante?**
+    1. **Segurança(Token)**: Se um desenvoledor criar um script para atualizar tarefas automaticamente, ele usa o `APIToken`. O sistema trata esse script como entidade separada.
+    2. **Trasparencia(Log)**: Se esse script apagar algo por erro lógico, o `APIActivityLog` permite que o administrador saiba exatamente quando, quem(qual Token) e como o erro foi executado 
+</details>
+
+
 
