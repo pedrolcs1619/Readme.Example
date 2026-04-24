@@ -465,6 +465,8 @@ Esse arquivo tem muitos modelos focados em **Estado da [`UI`](#UI)**, o sistema 
 </details>
 
 
+#TODO: falta concluir projeto
+
 
 > ### <a id="Project.py "></a>Project.py <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" width="22" height="22" style="vertical-align: middle; margin-right: 8px;">
 
